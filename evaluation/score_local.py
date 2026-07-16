@@ -8,10 +8,9 @@ solution.csv   columns: page_id, text, category
 submission.csv columns: page_id, text
 
 Prints overall macro CER plus per-category CER and diagnostic WER. There is
-no leaderboard and no automated scoring — this is how you measure yourself,
-and if your writeup reports CER numbers they should be exactly these,
-reproducible from your posted code (organizers re-run claims when verifying
-writeups considered for recognition).
+no leaderboard and no automated scoring — you measure yourself, and these
+are exactly the numbers you report in your writeup, reproducible from your
+posted code (organizers re-run writeups in contention for recognition).
 """
 
 import argparse

@@ -1,6 +1,6 @@
 # Data
 
-The evaluation set is a small, curated sample of pages from four UW Digital Collections, chosen for diversity across hands, layouts (prose vs. tables), scan media (direct scan vs. microfilm), and languages (English and German). **Images and ground-truth transcriptions are both released** — there is no automated scoring; you can measure yourself with the repo's metric whenever you want and report the numbers in your writeup if you choose. Collection backgrounds are in [`docs/collections.md`](docs/collections.md). A separate **labelled calibration set** from the same collections is also released — unlike the evaluation pages, those are free to train and tune on. [RESOURCES.md](RESOURCES.md) adds public auxiliary datasets and the UWDC browsers when you need more volume.
+The evaluation set is a small, curated sample of pages from four UW Digital Collections, chosen for diversity across hands, layouts (prose vs. tables), scan media (direct scan vs. microfilm), and languages (English and German). **Images and ground-truth transcriptions are both released** — there is no automated scoring; you measure yourself with the repo's metric and report the numbers in your writeup. Collection backgrounds are in [`docs/collections.md`](docs/collections.md). A separate **labelled calibration set** from the same collections is also released — unlike the evaluation pages, those are free to train and tune on. [RESOURCES.md](RESOURCES.md) adds public auxiliary datasets and the UWDC browsers when you need more volume.
 
 ## What you get
 
@@ -44,7 +44,7 @@ Line breaks inside `text` may be encoded either as real newlines (in a properly 
 python evaluation/score_local.py --solution eval/solution.csv --submission my_predictions.csv
 ```
 
-Scoring yourself is optional — there is no leaderboard and no automated scoring — but if you report numbers in your writeup, the overall macro CER and per-category CERs this prints are the ones to use ([WRITEUP_TEMPLATE.md](WRITEUP_TEMPLATE.md)). Commit the predictions file to your submission repo alongside the code that produced it — it's part of what verification re-checks.
+There is no leaderboard and nothing to upload — the predictions CSV never leaves your machine. The overall macro CER and per-category CERs this prints are what you report in your writeup ([WRITEUP_TEMPLATE.md](WRITEUP_TEMPLATE.md)). Commit the predictions file to your submission repo alongside the code that produced it — it's part of what verification re-checks.
 
 ## Scoring definition
 

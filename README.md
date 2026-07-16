@@ -83,7 +83,7 @@ Three starter notebooks in [`notebooks/`](notebooks/) demonstrate the main solut
 - [`02_open_source_tools.ipynb`](notebooks/02_open_source_tools.ipynb) — the same pipeline assembled from open-source components: [Kraken](https://kraken.re/) for segmentation, [PyLaia](https://gitlab.teklia.com/atr/pylaia) for recognition.
 - [`03_vlm_transcription.ipynb`](notebooks/03_vlm_transcription.ipynb) — a small open-weight vision-language model prompted for page-level transcription.
 
-If you're ambitious, fine-tune: even ~100 curated pages of the land-survey drawn tables could yield significant gains on that category. [`evaluation/`](evaluation/) has the official scoring code — if you report numbers in your writeup, the ones it prints are the ones to use.
+If you're ambitious, fine-tune: even ~100 curated pages of the land-survey drawn tables could yield significant gains on that category. [`evaluation/`](evaluation/) has the official scoring code — the numbers it prints are the numbers you report in your writeup.
 
 ---
 
@@ -109,19 +109,19 @@ Macro-averaging across categories means a system has to perform across the board
 
 **Scoring is against the verbatim ground-truth transcription.** The whole point is faithful extraction, so casing, punctuation, and original historical spelling all count — no lowercasing, no punctuation stripping, no cleanup. The one normalization applied to both prediction and reference before comparison: runs of whitespace (spaces, line breaks) collapse to a single space. That makes scoring insensitive to how you encode line breaks, while everything else stays verbatim. Full details and the exact implementation: [`evaluation/metric.py`](evaluation/metric.py).
 
-### Scoring yourself (optional)
+### Computing your score
 
-**There is no leaderboard and no automated scoring in this challenge.** The metric exists so *you* can measure your own progress: ground truth for the evaluation set is public, so at any point you can run your pipeline over the evaluation images, write a predictions CSV, and score it with the released tooling:
+**There is no leaderboard, no automated scoring, and nothing to upload — you measure yourself.** Ground truth for the evaluation set is public, so at any point you can run your pipeline over the evaluation images, write a predictions CSV, and score it with the released tooling:
 
 ```bash
 python evaluation/score_local.py --solution data/eval/solution.csv --submission my_predictions.csv
 ```
 
-Reporting the numbers it prints in your writeup is optional but encouraged — a documented pipeline with a measured CER is far more useful to the next team (and to the Libraries) than one without. **One rule keeps any reported number meaningful: the evaluation pages are for measuring, not training.** Don't fine-tune on them or hand-tune prompts against individual pages' ground truth; build on the calibration set and auxiliary data ([RESOURCES.md](RESOURCES.md)) and measure honestly.
+The macro CER it prints, plus the per-category breakdown, are what you report in your writeup — a documented pipeline with a measured CER is the deliverable. **One rule keeps the numbers meaningful: the evaluation pages are for measuring, not training.** Don't fine-tune on them or hand-tune prompts against individual pages' ground truth; build on the calibration set and auxiliary data ([RESOURCES.md](RESOURCES.md)) and measure honestly.
 
 ### Verification
 
-There are no scores to police — but writeups make claims, and claims should be real. Any CER you report must be reproducible: organizers may clone the repo at your submitted commit and re-run the pipeline over the evaluation set with the declared models before recognizing a writeup (sampling is stochastic; normal run-to-run variation is fine). The review also confirms the model-size limit, that no human hand-transcribed or trained on the evaluation pages, and that every model is open-weight. That review is the real backstop; the rules up front are deliberately lightweight.
+CER numbers in writeups are self-run, so they must be reproducible: organizers may clone the repo at your submitted commit and re-run the pipeline over the evaluation set with the declared models before recognizing a writeup, checking the reproduced CER against the reported one (sampling is stochastic; normal run-to-run variation is fine). The review also confirms the model-size limit, that no human hand-transcribed or trained on the evaluation pages, and that every model is open-weight. That review is the real backstop; the rules up front are deliberately lightweight.
 
 ---
 
@@ -139,14 +139,14 @@ Open the report with your **submission card** — copy this block and fill in yo
 code_url: https://github.com/team/pipeline/tree/v1.0-submission
 models: Qwen/Qwen2.5-VL-7B-Instruct
 largest_model_params: 7B
-cer_overall: 0.183                      # optional — include if you self-scored
-cer_by_category: survey_notes 0.21 | kade_letters 0.24 | dominy_accounts 0.14 | treaties_microfilm 0.14   # optional
+cer_overall: 0.183
+cer_by_category: survey_notes 0.21 | kade_letters 0.24 | dominy_accounts 0.14 | treaties_microfilm 0.14
 external_data: Bentham line pairs; 120 self-transcribed survey-notebook lines (fine-tuning)   # "none" is fine
 hardware: RTX 4090 24 GB                # informational, not scored
 eval_wall_clock: 38 min                 # informational, not scored
 ```
 
-`code_url` must be a public repo pinned to the exact tag or commit you ran (`git tag v1.0-submission && git push origin v1.0-submission`). Open the link in a private browser window before submitting — if it 404s, your repo is private or the commit isn't pushed. `cer_overall` and `cer_by_category` are optional (there's no leaderboard) — but if you report them, they must be exactly as printed by `evaluation/score_local.py` and reproducible from your posted code. `external_data` is a disclosure, not a requirement — external data is optional, and `none` is a perfectly good answer. `hardware` and `eval_wall_clock` (total wall-clock time to process the full evaluation set) are informational only, never scored — together they're the deployability signal the Libraries care about. Field-by-field details: [WRITEUP_TEMPLATE.md](WRITEUP_TEMPLATE.md).
+`code_url` must be a public repo pinned to the exact tag or commit you ran (`git tag v1.0-submission && git push origin v1.0-submission`). Open the link in a private browser window before submitting — if it 404s, your repo is private or the commit isn't pushed. `cer_overall` and `cer_by_category` come straight from your own `evaluation/score_local.py` run — there's no leaderboard and nothing to upload, but the numbers must be reproducible from your posted code. `external_data` is a disclosure, not a requirement — external data is optional, and `none` is a perfectly good answer. `hardware` and `eval_wall_clock` (total wall-clock time to process the full evaluation set) are informational only, never scored — together they're the deployability signal the Libraries care about. Field-by-field details: [WRITEUP_TEMPLATE.md](WRITEUP_TEMPLATE.md).
 
 During the challenge, share early and often via the Discussion tab: post progress, share your repo, describe what's working and what isn't. Think of Discussion as an open lab notebook for the cohort.
 
@@ -154,7 +154,7 @@ During the challenge, share early and often via the Discussion tab: post progres
 
 ## Tracks and Awards
 
-**Open track** — the only track; select it when submitting your Writeup. There is no metric leaderboard: writeups are reviewed on the quality, reproducibility, and demonstrated results of the documented pipeline, and claims in writeups being considered for recognition are verified from the posted code.
+**Open track** — the only track; select it when submitting your Writeup. There is no metric leaderboard: writeups are reviewed on the documented pipeline and its measured results — the reported CERs — and writeups in contention for recognition are verified from the posted code.
 
 There are no cash or material awards — this is a non-monetary educational challenge (Kaggle Kudos only). Top teams may be invited to present at the ML+X showcase, and strong pipelines may be adopted by the UW Digital Collections Center for production transcription work — which is a better trophy anyway.
 

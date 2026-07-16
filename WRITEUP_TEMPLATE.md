@@ -12,8 +12,8 @@ The one part that is **not optional** is the submission card — the block below
 code_url: https://github.com/team/pipeline/tree/v1.0-submission
 models: Qwen/Qwen2.5-VL-7B-Instruct; kraken blla.mlmodel (segmentation)
 largest_model_params: 7B
-cer_overall: 0.183                      # optional — include if you self-scored
-cer_by_category: survey_notes 0.21 | kade_letters 0.24 | dominy_accounts 0.14 | treaties_microfilm 0.14   # optional
+cer_overall: 0.183
+cer_by_category: survey_notes 0.21 | kade_letters 0.24 | dominy_accounts 0.14 | treaties_microfilm 0.14
 external_data: Bentham line pairs; 120 self-transcribed survey-notebook lines (fine-tuning)   # "none" is fine
 hardware: RTX 4090 24 GB                # informational, not scored
 eval_wall_clock: 38 min                 # informational, not scored
@@ -22,7 +22,7 @@ eval_wall_clock: 38 min                 # informational, not scored
 - `code_url` — your public repo at the exact tag or commit SHA that produced your reported numbers. Get it with `git tag v1.0-submission && git push origin v1.0-submission`; verify it loads in a private browser window. Include your predictions CSV in the repo.
 - `models` — every model in the pipeline, with checkpoint names. Each must be open-weight and under 70B parameters ([RULES.md](RULES.md)).
 - `largest_model_params` — parameter count of the largest model anywhere in the pipeline.
-- `cer_overall` and `cer_by_category` — **optional**: there is no leaderboard and no automated scoring, so scoring yourself is your choice (encouraged — a measured pipeline is more useful to everyone). If you do report numbers, they must be exactly as printed by `evaluation/score_local.py` against the released evaluation set and reproducible from your posted code; claims in writeups considered for recognition are re-run.
+- `cer_overall` and `cer_by_category` — exactly as printed by your own `evaluation/score_local.py` run against the released evaluation set. Lower is better. There's no leaderboard and nothing to upload — you measure yourself — but the numbers must be reproducible from your posted code; writeups in contention for recognition are re-run.
 - `external_data` — using external data is optional; this field is a disclosure, not a score. If you trained, fine-tuned, or tuned on anything beyond the provided calibration set — public datasets, self-transcribed samples — list it here; otherwise write `none`. (Training on the evaluation pages themselves is against the rules.)
 - `hardware` — **informational only, not scored.** It helps others judge deployability; there is no hardware requirement or advantage.
 - `eval_wall_clock` — **informational only, not scored.** Total wall-clock time for your pipeline to process the full released evaluation set end to end (images in, predictions CSV out) on the listed hardware. Together with `hardware`, this is the deployability signal the Libraries care about.
@@ -51,7 +51,7 @@ The sections below are a starting point if a blank page is unhelpful:
 
 ### 5. Results
 
-> If you self-scored: overall and per-category CERs from `evaluation/score_local.py`, plus the exact command that produced your predictions file. Either way: which categories are strong/weak for your pipeline, and why do you think that is?
+> Final overall CER and per-category CERs from `evaluation/score_local.py`, plus the exact command that produced your predictions file. Which categories are strong/weak, and why do you think that is?
 
 ### 6. Failure analysis
 

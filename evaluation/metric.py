@@ -3,8 +3,8 @@
 Metric = Character Error Rate (CER), macro-averaged across document
 categories. Lower is better. There is no leaderboard and no automated
 scoring — participants run this themselves against the released
-evaluation set (via score_local.py), and organizers use the same code
-when verifying claims in writeups.
+evaluation set (via score_local.py) and report the numbers in their
+writeup; organizers use the same code when verifying writeups.
 
     page CER     = levenshtein(prediction, reference) / len(reference), capped at 1.0
     category CER = mean of page CERs within the category
