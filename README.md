@@ -71,7 +71,7 @@ The evaluation set is built **entirely from UW Digital Collections materials** w
 
 Public OCR/HTR benchmarks are well represented in VLM training data; a set of real institutional documents that has never circulated with transcriptions is what tells you whether a system actually generalizes. See [DATA.md](DATA.md) for the exact data format and [`docs/collections.md`](docs/collections.md) for collection details.
 
-**No training set is provided — assembling one is part of the challenge.** The evaluation pages are for measuring, not training: tune *toward* them, don't train *on* them (see [RULES.md](RULES.md)). In the era of pretrained vision-language models, training is increasingly optional; what every team does need is auxiliary data that resembles the evaluation material. [RESOURCES.md](RESOURCES.md) lists public datasets (Bentham, BLN600, NARA record groups, IAM, the Alfred Escher German correspondence, and more) matched to the UW collections, plus the public UWDC image browsers if you want to curate your own samples. Depending on your approach — VLM or traditional pipeline, off-the-shelf or fine-tuned — you'll want very different data, so finding and gathering it is left to you.
+**A labelled calibration set ships alongside the evaluation set.** It's a second sample of ground-truth-transcribed UW pages from the same collections, and unlike the evaluation pages it's yours to use however you want: fine-tune on it, tune prompts against it, or just use it to compare candidate models and pipeline designs before committing to one. That last use is the intended one — the set is deliberately small, sized for finding out what transcribes this material faithfully rather than for training from scratch. When you need volume, [RESOURCES.md](RESOURCES.md) maps public auxiliary datasets (Bentham, BLN600, NARA record groups, IAM, the Alfred Escher German correspondence, and more) to the UW collections, and the public UWDC browsers let you curate more pages yourself. The evaluation pages stay measuring-only: tune *toward* them, never *on* them (see [RULES.md](RULES.md)).
 
 ---
 
@@ -117,7 +117,7 @@ Ground truth for the evaluation set is public, so you score yourself — run you
 python evaluation/score_local.py --solution data/eval/solution.csv --submission my_predictions.csv
 ```
 
-The macro CER it prints, plus the per-category breakdown, go on the submission card in your writeup. **One rule makes the numbers meaningful: the evaluation pages are for measuring, not training.** Don't fine-tune on them or hand-tune prompts against individual pages' ground truth; build on auxiliary data ([RESOURCES.md](RESOURCES.md)) and measure honestly. This is honor-system during the challenge and checked in code review at the end.
+The macro CER it prints, plus the per-category breakdown, go on the submission card in your writeup. **One rule makes the numbers meaningful: the evaluation pages are for measuring, not training.** Don't fine-tune on them or hand-tune prompts against individual pages' ground truth; build on the calibration set and auxiliary data ([RESOURCES.md](RESOURCES.md)) and measure honestly. This is honor-system during the challenge and checked in code review at the end.
 
 ### Verification of top submissions
 
@@ -141,11 +141,12 @@ models: Qwen/Qwen2.5-VL-7B-Instruct
 largest_model_params: 7B
 cer_overall: 0.183
 cer_by_category: survey_notes 0.21 | kade_letters 0.24 | dominy_accounts 0.14 | treaties_microfilm 0.14
-external_data: Bentham line pairs (calibration); 120 self-transcribed survey-notebook lines (fine-tuning)
-hardware: RTX 4090 24 GB
+external_data: Bentham line pairs; 120 self-transcribed survey-notebook lines (fine-tuning)   # "none" is fine
+hardware: RTX 4090 24 GB                # informational, not scored
+eval_wall_clock: 38 min                 # informational, not scored
 ```
 
-`code_url` must be a public repo pinned to the exact tag or commit you ran (`git tag v1.0-submission && git push origin v1.0-submission`). Open the link in a private browser window before submitting — if it 404s, your repo is private or the commit isn't pushed. `cer_overall` and `cer_by_category` come straight from `evaluation/score_local.py`.
+`code_url` must be a public repo pinned to the exact tag or commit you ran (`git tag v1.0-submission && git push origin v1.0-submission`). Open the link in a private browser window before submitting — if it 404s, your repo is private or the commit isn't pushed. `cer_overall` and `cer_by_category` come straight from `evaluation/score_local.py`. `external_data` is a disclosure, not a requirement — external data is optional, and `none` is a perfectly good answer. `hardware` and `eval_wall_clock` (total wall-clock time to process the full evaluation set) are informational only, never scored — together they're the deployability signal the Libraries care about. Field-by-field details: [WRITEUP_TEMPLATE.md](WRITEUP_TEMPLATE.md).
 
 During the challenge, share early and often via the Discussion tab: post progress, share your repo, describe what's working and what isn't. Organizers keep a standings post in the Discussion tab updated from the submitted cards. Think of Discussion as an open lab notebook for the cohort.
 

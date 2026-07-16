@@ -14,16 +14,18 @@ models: Qwen/Qwen2.5-VL-7B-Instruct; kraken blla.mlmodel (segmentation)
 largest_model_params: 7B
 cer_overall: 0.183
 cer_by_category: survey_notes 0.21 | kade_letters 0.24 | dominy_accounts 0.14 | treaties_microfilm 0.14
-external_data: Bentham line pairs (calibration); 120 self-transcribed survey-notebook lines (fine-tuning)
-hardware: RTX 4090 24 GB
+external_data: Bentham line pairs; 120 self-transcribed survey-notebook lines (fine-tuning)   # "none" is fine
+hardware: RTX 4090 24 GB                # informational, not scored
+eval_wall_clock: 38 min                 # informational, not scored
 ```
 
 - `code_url` — your public repo at the exact tag or commit SHA that produced your reported numbers. Get it with `git tag v1.0-submission && git push origin v1.0-submission`; verify it loads in a private browser window. Include your predictions CSV in the repo.
 - `models` — every model in the pipeline, with checkpoint names. Each must be open-weight and under 70B parameters ([RULES.md](RULES.md)).
 - `largest_model_params` — parameter count of the largest model anywhere in the pipeline.
 - `cer_overall` and `cer_by_category` — exactly as printed by `evaluation/score_local.py` against the released evaluation set. Lower is better; self-reported, spot-checked, and verified for the top 10.
-- `external_data` — every dataset you trained, fine-tuned, or calibrated on, including self-transcribed samples. (Training on the evaluation pages themselves is against the rules.)
-- `hardware` — informational, not scored; helps others judge deployability.
+- `external_data` — using external data is optional; this field is a disclosure, not a score. If you trained, fine-tuned, or tuned on anything beyond the provided calibration set — public datasets, self-transcribed samples — list it here; otherwise write `none`. (Training on the evaluation pages themselves is against the rules.)
+- `hardware` — **informational only, not scored.** It helps others judge deployability; there is no hardware requirement or advantage.
+- `eval_wall_clock` — **informational only, not scored.** Total wall-clock time for your pipeline to process the full released evaluation set end to end (images in, predictions CSV out) on the listed hardware. Together with `hardware`, this is the deployability signal the Libraries care about.
 
 Also add a **cover image** — Kaggle requires one to submit a Writeup; an evaluation page next to your transcription of it, or a pipeline diagram, both work.
 

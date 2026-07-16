@@ -13,6 +13,7 @@ Decisions settled in the planning doc + email thread (June–July 2026):
 - **Rules:** open-weight <70B per model, honor-system up front, top-10 code review before winners announced; code link (public GitHub, pinned commit) required with every submission; no prize, collaborative framing.
 - **Starter notebooks (Kevin):** (1) traditional pipeline from scratch (layout detection → language routing → recognition), (2) open-source tools (Kraken segmentation + PyLaia recognition), (3) small open-weight VLM. Optional fine-tuning angle: ~100 curated drawn-table pages from the survey notebooks.
 - **Name: BadgerScribe (July 2026, Chris).** Full title "BadgerScribe: Archival Document Transcription Challenge" — Wisconsin identity + the task, subtitle keeps it discoverable. Runner-up considered: OpenAgent OCR (series branding with OpenAgent Coding, but "agent" overpromised autonomy and "OCR" undersold handwriting).
+- **A labelled UW calibration set IS provided (July 2026, Chris).** Revises the "participants assemble all their own data" stance above: a small sample of GT-transcribed archival pages ships alongside the evaluation set, free to train/tune on. Purpose is calibration — letting teams find the best models and the surrounding code/harness/scaffold for faithful transcription on this material — not large-scale training; RESOURCES.md auxiliary sets still cover volume. Consequence: staff GT effort now covers two disjoint samples (calibration + evaluation) per collection.
 - **Kaggle Hackathon format, not a scored competition (July 2026, Chris).** The Writeup is the submission — same format Efficient Coder landed on. Rationale: the writeup/documented-process is the whole point for the Libraries; no prize means no need for adversarial-grade scoring infrastructure. Consequence: the UW GT sample is **released** (images + solution.csv) as the public evaluation set teams tune toward with auxiliary data; scores are self-reported from `score_local.py` on submission cards, spot-checked, top 10 re-run/code-reviewed. No hidden test set, no auto-scored leaderboard, no submission CSV upload; standings kept as a Discussion-tab post. New rule carrying the weight: evaluation pages are for measuring, not training.
 
 ## Open questions
@@ -26,8 +27,8 @@ Decisions settled in the planning doc + email thread (June–July 2026):
 
 ## Launch checklist
 
-- [ ] GT pages transcribed + double-checked per `docs/transcription_conventions.md`; conventions doc updated with per-collection quirks and de-drafted
-- [ ] Package Kaggle dataset (`eval/images/`, `metadata.csv`, `solution.csv`) — well under the 20 GB cap; JPEG derivatives of the TIFFs
+- [ ] GT pages transcribed + double-checked per `docs/transcription_conventions.md` — two disjoint samples per collection (calibration + evaluation); conventions doc updated with per-collection quirks and de-drafted
+- [ ] Package Kaggle dataset (`calibration/images/` + `transcriptions.csv`, `eval/images/`, `metadata.csv`, `solution.csv`) — well under the 20 GB cap; JPEG derivatives of the TIFFs
 - [ ] Sanity-check the released `solution.csv` through `score_local.py` (perfect submission scores 0.0; per-category counts look right)
 - [ ] Set up the Kaggle Hackathon: Writeup submission flow, Open track, cover-image note; seed the standings post in Discussion
 - [ ] Kevin: fill in the three starter notebooks against the released evaluation pages; run end-to-end on Kaggle Notebooks free tier; record baseline CERs per category (also gives us the difficulty read and seeds the standings post)

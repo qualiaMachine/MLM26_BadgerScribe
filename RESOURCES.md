@@ -1,6 +1,6 @@
 # Resources
 
-No training set ships with this challenge — assembling calibration and training data that resembles the test material is part of the work. This page lists public datasets matched to the UW collections, the collections' own public browsers, and the main open-source tooling families.
+The challenge ships a small labelled calibration set of UW pages ([DATA.md](DATA.md)) — enough to work out which models and pipeline designs transcribe this material faithfully, not enough to train on at scale. This page is for when you need more: public datasets matched to the UW collections, the collections' own public browsers for curating additional pages, and the main open-source tooling families.
 
 ## Suggested public datasets
 

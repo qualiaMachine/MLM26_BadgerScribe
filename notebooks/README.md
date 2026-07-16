@@ -14,4 +14,4 @@ The families compose: chaining models is allowed as long as every model is open-
 
 ## Fine-tuning
 
-All three families benefit from fine-tuning on curated in-domain samples — even ~100 transcribed pages of the survey notebooks' drawn tables might yield significant gains on that category. The UW collections are publicly browsable for building your own training pairs (the evaluation pages are for measuring, not training); see [RESOURCES.md](../RESOURCES.md).
+All three families benefit from tuning on in-domain samples — start with the released calibration set ([DATA.md](../DATA.md)), and even ~100 transcribed pages of the survey notebooks' drawn tables might yield significant gains on that category. The UW collections are publicly browsable for building your own training pairs (the evaluation pages are for measuring, not training); see [RESOURCES.md](../RESOURCES.md).

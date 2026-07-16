@@ -6,8 +6,8 @@ Not in the submitted run — closed-weight API models are out of scope, includin
 **Is the 70B limit per model or for the whole pipeline?**
 Per model. A pipeline chaining a layout detector, two recognizers, and a 7B post-corrector is fine — every individual model must be open-weight and under 70B parameters.
 
-**There's no training data. What do I train on?**
-Whatever you can find or make — that's deliberately part of the challenge. [RESOURCES.md](RESOURCES.md) maps public auxiliary datasets (Bentham, NARA RG 109, Alfred Escher, BLN600, IAM…) to the evaluation categories, and the UW collections are publicly browsable if you want to transcribe your own fine-tuning sample. Note that with modern pretrained VLMs, training is increasingly optional — the released evaluation set tells you where you stand at any time.
+**What do I train and tune on?**
+Start with the released calibration set ([DATA.md](DATA.md)) — labelled UW pages from the same four collections that, unlike the evaluation pages, you can train and tune on freely. It's small by design: its main job is helping you pick the right models and pipeline scaffolding for this material, not feeding large-scale training. When you need volume, [RESOURCES.md](RESOURCES.md) maps public auxiliary datasets (Bentham, NARA RG 109, Alfred Escher, BLN600, IAM…) to the evaluation categories, and the UW collections are publicly browsable if you want to transcribe more pages yourself.
 
 **Can I fine-tune?**
 Yes, encouraged — even ~100 curated pages of the survey notebooks' drawn tables might yield significant gains on that category. The fine-tuned model counts against the 70B cap via its base model, and your weights must be public or reproducible from the public base plus your published adapter. Document your data in the writeup.
