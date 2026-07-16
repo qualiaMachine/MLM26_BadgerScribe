@@ -1,6 +1,6 @@
 # Data
 
-The evaluation set is a small, curated sample of pages from four UW Digital Collections, chosen for diversity across hands, layouts (prose vs. tables), scan media (direct scan vs. microfilm), and languages (English and German). **Images and ground-truth transcriptions are both released** — scores are self-computed with the repo's metric and reported in your writeup's submission card. Collection backgrounds are in [`docs/collections.md`](docs/collections.md). A separate **labelled calibration set** from the same collections is also released — unlike the evaluation pages, those are free to train and tune on. [RESOURCES.md](RESOURCES.md) adds public auxiliary datasets and the UWDC browsers when you need more volume.
+The evaluation set is a small, curated sample of pages from four UW Digital Collections, chosen for diversity across hands, layouts (prose vs. tables), scan media (direct scan vs. microfilm), and languages (English and German). **Images and ground-truth transcriptions are both released** — there is no automated scoring; you can measure yourself with the repo's metric whenever you want and report the numbers in your writeup if you choose. Collection backgrounds are in [`docs/collections.md`](docs/collections.md). A separate **labelled calibration set** from the same collections is also released — unlike the evaluation pages, those are free to train and tune on. [RESOURCES.md](RESOURCES.md) adds public auxiliary datasets and the UWDC browsers when you need more volume.
 
 ## What you get
 
@@ -27,7 +27,7 @@ The calibration and evaluation sets are disjoint page samples from the same four
 
 `solution.csv` follows the conventions in [`docs/transcription_conventions.md`](docs/transcription_conventions.md), which you should read before building anything — it defines exactly what your pipeline is measured against (verbatim casing, punctuation, historical spelling; whitespace collapsed for scoring).
 
-**The evaluation pages are for measuring, not training.** Ground truth is public because scores are self-reported — the deal is that you don't fine-tune on these pages or hand-tune prompts against their transcriptions. Build on the calibration set and auxiliary data; measure here. See [RULES.md](RULES.md).
+**The evaluation pages are for measuring, not training.** Ground truth is public so you can do your own measuring — the deal is that you don't fine-tune on these pages or hand-tune prompts against their transcriptions. Build on the calibration set and auxiliary data; measure here. See [RULES.md](RULES.md).
 
 ## Predictions file and scoring
 
@@ -44,7 +44,7 @@ Line breaks inside `text` may be encoded either as real newlines (in a properly 
 python evaluation/score_local.py --solution eval/solution.csv --submission my_predictions.csv
 ```
 
-The overall macro CER and per-category CERs it prints are what go on the submission card in your writeup ([WRITEUP_TEMPLATE.md](WRITEUP_TEMPLATE.md)). Commit the predictions file to your submission repo alongside the code that produced it — it's part of what verification re-checks.
+Scoring yourself is optional — there is no leaderboard and no automated scoring — but if you report numbers in your writeup, the overall macro CER and per-category CERs this prints are the ones to use ([WRITEUP_TEMPLATE.md](WRITEUP_TEMPLATE.md)). Commit the predictions file to your submission repo alongside the code that produced it — it's part of what verification re-checks.
 
 ## Scoring definition
 

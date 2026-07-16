@@ -1,9 +1,10 @@
 """Scoring metric for BadgerScribe: Archival Document Transcription Challenge.
 
-Official score = Character Error Rate (CER), macro-averaged across
-document categories. Lower is better. Scores are self-reported on the
-released evaluation set (via score_local.py) and verified by organizers
-for the top submissions.
+Metric = Character Error Rate (CER), macro-averaged across document
+categories. Lower is better. There is no leaderboard and no automated
+scoring — participants run this themselves against the released
+evaluation set (via score_local.py), and organizers use the same code
+when verifying claims in writeups.
 
     page CER     = levenshtein(prediction, reference) / len(reference), capped at 1.0
     category CER = mean of page CERs within the category
@@ -79,7 +80,7 @@ def page_cer(prediction: str, reference: str) -> float:
 
 
 def page_wer(prediction: str, reference: str) -> float:
-    """Word Error Rate — diagnostic only, never used for ranking."""
+    """Word Error Rate — diagnostic only, not part of the score."""
     pred = normalize_text(prediction).split()
     ref = normalize_text(reference).split()
     if not ref:

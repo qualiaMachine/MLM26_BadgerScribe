@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compute your official score: run against the released evaluation set.
+"""Score your predictions against the released evaluation set.
 
 Usage:
     python evaluation/score_local.py --solution eval/solution.csv --submission my_predictions.csv
@@ -7,10 +7,11 @@ Usage:
 solution.csv   columns: page_id, text, category
 submission.csv columns: page_id, text
 
-Prints overall macro CER plus per-category CER and diagnostic WER. The
-overall and per-category CERs are exactly what goes on the submission card
-in your writeup — self-reported, spot-checked, and re-run by organizers for
-the top 10.
+Prints overall macro CER plus per-category CER and diagnostic WER. There is
+no leaderboard and no automated scoring — this is how you measure yourself,
+and if your writeup reports CER numbers they should be exactly these,
+reproducible from your posted code (organizers re-run claims when verifying
+writeups considered for recognition).
 """
 
 import argparse
@@ -52,7 +53,7 @@ def main() -> int:
     for cat in sorted(by_cat.index):
         print(f"{cat:<24}{counts[cat]:>6}{by_cat[cat]:>9.4f}{wer_by_cat[cat]:>9.4f}")
     print("-" * 48)
-    print(f"{'macro CER (official score)':<30}{overall:>9.4f}")
+    print(f"{'macro CER (overall)':<30}{overall:>9.4f}")
     return 0
 
 

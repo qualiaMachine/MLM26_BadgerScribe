@@ -13,7 +13,7 @@ Start with the released calibration set ([DATA.md](DATA.md)) — labelled UW pag
 Yes, encouraged — even ~100 curated pages of the survey notebooks' drawn tables might yield significant gains on that category. The fine-tuned model counts against the 70B cap via its base model, and your weights must be public or reproducible from the public base plus your published adapter. Document your data in the writeup.
 
 **The ground truth is public — what stops me from just copying it (or training on it)?**
-Nothing but the rules and the code review — this is a no-prize, honor-system challenge, and the top 10 are verified by re-running their posted code. Copying or hand-editing predictions, training on the evaluation pages, or tuning prompts against individual pages' transcriptions all disqualify. The evaluation set is for measuring; hand-transcribing *other* pages from the same collections to build training data is fine and encouraged.
+Nothing but the rules, the code review, and the fact that there's nothing to gain — no prize, no leaderboard, no score anyone is ranked by. A copied number would only pollute your own writeup, and writeups considered for recognition are verified by re-running their posted code. Copying or hand-editing predictions, training on the evaluation pages, or tuning prompts against individual pages' transcriptions all disqualify. The evaluation set is for measuring; hand-transcribing *other* pages from the same collections to build training data is fine and encouraged.
 
 **The Kade letters are in German — do I have to handle that?**
 Yes, if you want a good score: the metric macro-averages across categories, so tanking the German category costs you a full quarter of the weight. Pre-1940 German handwriting (Kurrent) is a different script from English cursive; see the Alfred Escher dataset in [RESOURCES.md](RESOURCES.md).
@@ -28,10 +28,10 @@ The starter notebooks target models that fit Kaggle Notebooks' free GPU quota, a
 Both fine. Teams of 1–5. Reflect honestly on contributions in the writeup.
 
 **I'm not at UW–Madison.**
-Welcome — the challenge is fully open and everyone is ranked from the same submission cards. You won't have access to UW-only hosted compute, but nothing here requires it.
+Welcome — the challenge is fully open and everyone submits the same way. You won't have access to UW-only hosted compute, but nothing here requires it.
 
-**Will there be a live leaderboard?**
-Standings are visible throughout: submissions are Kaggle Writeups with a submission card, public from the moment they're submitted, and organizers keep a standings post in the Discussion tab updated from the submitted cards. Scores are self-reported from your own `score_local.py` runs — organizers spot-check periodically, and the top 10 get re-run and code-reviewed before winners are announced, so report numbers you can reproduce.
+**Will there be a leaderboard?**
+No — no leaderboard, live or otherwise, and no automated scoring. That's the nature of the hackathon format: the writeup is the submission, and it's judged as a piece of documented work, not as a score. You *can* measure yourself at any time with `score_local.py` against the released evaluation set, and reporting your numbers in the writeup is encouraged — just make sure anything you report is reproducible from your posted code, because claims in writeups considered for recognition get re-run. Writeups are public once submitted, so Discussion is where you'll see how other teams are doing.
 
 **What happens to the winning pipelines?**
-Code review of the top 10, then winners announced — and the real payoff: the UW Digital Collections Center is looking for a process it can adopt for production transcription of its collections, with minimal staff effort. The best outcome for this challenge is your pipeline running in an actual library.
+Organizers review the submitted writeups, re-run the code behind the ones in contention, then announce winners — and the real payoff: the UW Digital Collections Center is looking for a process it can adopt for production transcription of its collections, with minimal staff effort. The best outcome for this challenge is your pipeline running in an actual library.

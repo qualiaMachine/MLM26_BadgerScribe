@@ -1,9 +1,9 @@
 # Evaluation
 
-Single source of truth for scoring. There is no auto-scored leaderboard — you run this code against the released evaluation set and report the numbers on your writeup's submission card; organizers re-run the same code when verifying the top 10.
+Single source of truth for scoring. There is no leaderboard and no automated scoring — this code exists so you can measure yourself against the released evaluation set whenever you want. Reporting the numbers in your writeup is optional but encouraged; organizers re-run the same code when verifying claims in writeups considered for recognition.
 
 - **[`metric.py`](metric.py)** — macro-averaged CER (lower is better), verbatim comparison with whitespace collapsed. Entry point is `score(solution, submission, "page_id")`. Self-test: `python metric.py`.
-- **[`score_local.py`](score_local.py)** — CLI: `python score_local.py --solution eval/solution.csv --submission my_predictions.csv`. Prints per-category CER, diagnostic WER, and the overall macro CER — the values that go on your submission card.
+- **[`score_local.py`](score_local.py)** — CLI: `python score_local.py --solution eval/solution.csv --submission my_predictions.csv`. Prints per-category CER, diagnostic WER, and the overall macro CER — the values to quote in your writeup if you report scores.
 - **[`example_predictions.csv`](example_predictions.csv)** — the shape of a valid predictions file (`page_id,text`). The real page ids ship with the evaluation set in the Kaggle dataset.
 - **[`example_solution.csv`](example_solution.csv)** — a fabricated mini ground-truth file (illustrative text only, **not** real UWDC transcriptions) so the tooling is runnable today. The real `eval/solution.csv` ships in the Kaggle dataset and follows [`../docs/transcription_conventions.md`](../docs/transcription_conventions.md).
 
