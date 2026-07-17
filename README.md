@@ -79,7 +79,7 @@ Public OCR/HTR benchmarks are well represented in VLM training data; a set of re
 
 ---
 
-## Starter materials
+## Starter materials (authored by Claude Code and unvetted so far)
 
 Three starter notebooks in [`notebooks/`](notebooks/) demonstrate the main solution families end-to-end, from document image to scored CER:
 
