@@ -10,7 +10,7 @@ Institutional archives contain vast collections of documents that remain difficu
 
 This challenge focuses on one core problem: **faithful transcription of archival document images into machine-readable text**. The UW Libraries' digital collections provide the motivating use case and the evaluation data — nineteenth-century surveyors' field notes, German immigrant correspondence, craftsmen's account books, and treaty-era government documents. The goal is not reasoning, retrieval, or question answering. Participants are evaluated purely on how accurately they convert document images into text.
 
-This is an **educational, collaborative challenge**. There are no cash prizes and no reason to hoard ideas. The point is to surface and share transcription pipelines that libraries and archives can actually deploy — share repos early, post findings to the Discussion tab, and build on each other's approaches. Every improvement one team publishes moves real archival collections closer to being readable, searchable, and accessible.
+This is an **educational, collaborative challenge**. There are no cash prizes and no reason to hoard ideas. The point is to surface and share transcription pipelines that libraries and archives can actually deploy — share repos early, post findings to the Discussion tab, and build on each other's approaches. Deployability is a constraint, not an afterthought: submitted pipelines must run on a single 96 GB GPU with open-weight models (see [Description](#description)), because the target operator is an archives department with modest hardware and scarce staff time, not a datacenter. Every improvement one team publishes moves real archival collections closer to being readable, searchable, and accessible.
 
 ---
 
@@ -42,7 +42,7 @@ Outputs must be:
 
 This is strictly a transcription task — no question answering, no reasoning over content, no summarization.
 
-**Model size constraint: every model in your submitted pipeline must be an open-weight model under 70B parameters.** This keeps winning solutions runnable on-prem without exotic hardware, which is the whole point for institutional adoption — a benchmark won by a 400B frontier model doesn't help a library actually deploy anything. Closed-weight API models (GPT, Claude, Gemini) are out of scope for the submitted run; see [RULES.md](RULES.md).
+**Hardware constraint: your submitted pipeline must run end-to-end on a single GPU with at most 96 GB of VRAM, using open-weight models only.** The number matches the RTX Pro 6000 machines available on campus, and keeping solutions deployable on one such box is the whole point for institutional adoption — a benchmark won by a 400B frontier model spread across a datacenter doesn't help a library actually deploy anything. The budget covers the pipeline as it executes: sequential model loading is fine, and quantization is allowed and encouraged. Closed-weight API models (GPT, Claude, Gemini) are out of scope for the submitted run; see [RULES.md](RULES.md).
 
 ### Hard cases
 
@@ -121,7 +121,7 @@ The macro CER it prints, plus the per-category breakdown, are what you report in
 
 ### Verification
 
-CER numbers in writeups are self-run, so they must be reproducible: organizers may clone the repo at your submitted commit and re-run the pipeline over the evaluation set with the declared models before recognizing a writeup, checking the reproduced CER against the reported one (sampling is stochastic; normal run-to-run variation is fine). The review also confirms the model-size limit, that no human hand-transcribed or trained on the evaluation pages, and that every model is open-weight. That review is the real backstop; the rules up front are deliberately lightweight.
+CER numbers in writeups are self-run, so they must be reproducible: organizers may clone the repo at your submitted commit and re-run the pipeline over the evaluation set with the declared models before recognizing a writeup, checking the reproduced CER against the reported one (sampling is stochastic; normal run-to-run variation is fine). The review also confirms the pipeline runs within the 96 GB single-GPU VRAM budget, that no human hand-transcribed or trained on the evaluation pages, and that every model is open-weight. That review is the real backstop; the rules up front are deliberately lightweight.
 
 ---
 
@@ -138,7 +138,7 @@ Open the report with your **submission card** — copy this block and fill in yo
 ```
 code_url: https://github.com/team/pipeline/tree/v1.0-submission
 models: Qwen/Qwen2.5-VL-7B-Instruct
-largest_model_params: 7B
+peak_vram: 18 GB
 cer_overall: 0.183
 cer_by_category: survey_notes 0.21 | kade_letters 0.24 | dominy_accounts 0.14 | treaties_microfilm 0.14
 external_data: Bentham line pairs; 120 self-transcribed survey-notebook lines (fine-tuning)   # "none" is fine

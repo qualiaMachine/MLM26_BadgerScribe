@@ -41,7 +41,7 @@ The source collections are publicly browsable — transcribing a small sample yo
 ## Tooling
 
 - **Traditional / open-source HTR**: [Kraken](https://kraken.re/) (layout + line segmentation), [PyLaia](https://gitlab.teklia.com/atr/pylaia) (line recognition), [Tesseract](https://github.com/tesseract-ocr/tesseract) (print), [TrOCR](https://huggingface.co/docs/transformers/model_doc/trocr) (transformer line recognizer, fine-tunable).
-- **Open-weight VLMs** (all well under the 70B cap): Qwen2.5-VL (3B/7B/32B), InternVL, Pixtral-12B, Llama 3.2 Vision 11B — prompt for page-level transcription or fine-tune on curated lines.
+- **Open-weight VLMs** (all comfortably within the 96 GB VRAM budget): Qwen2.5-VL (3B/7B/32B), InternVL, Pixtral-12B, Llama 3.2 Vision 11B — prompt for page-level transcription or fine-tune on curated lines.
 - Starter notebooks for each family are in [`notebooks/`](notebooks/).
 
 ## Compute

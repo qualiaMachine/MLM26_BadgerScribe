@@ -8,7 +8,7 @@ Three notebooks, one per solution family, each running the full path from page i
 | [`02_open_source_tools.ipynb`](02_open_source_tools.ipynb) | [Kraken](https://kraken.re/) segmentation + [PyLaia](https://gitlab.teklia.com/atr/pylaia) recognition | Production-grade historical-document tooling, very fine-tunable; more setup |
 | [`03_vlm_transcription.ipynb`](03_vlm_transcription.ipynb) | Small open-weight VLM (Qwen2.5-VL-7B) prompted per page | Shortest path to a full submission; normalizes/hallucinates by default, weakest on Kurrent |
 
-The families compose: chaining models is allowed as long as every model is open-weight and under 70B parameters (see [RULES.md](../RULES.md)) — e.g., Kraken segmentation feeding a VLM per region, or VLM fallback for low-confidence PyLaia lines.
+The families compose: chaining models is allowed as long as every model is open-weight and the whole pipeline runs within the single-GPU 96 GB VRAM budget (see [RULES.md](../RULES.md)) — e.g., Kraken segmentation feeding a VLM per region, or VLM fallback for low-confidence PyLaia lines.
 
 > **Status: skeletons.** The pipeline structure, scoring hookup, and submission-file cells are in place; model-dependent cells are stubs marked `TODO(kevin)` and will be filled in (with baseline CERs per category) before launch.
 

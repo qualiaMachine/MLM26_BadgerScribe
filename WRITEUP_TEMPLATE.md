@@ -11,7 +11,7 @@ The one part that is **not optional** is the submission card — the block below
 ```
 code_url: https://github.com/team/pipeline/tree/v1.0-submission
 models: Qwen/Qwen2.5-VL-7B-Instruct; kraken blla.mlmodel (segmentation)
-largest_model_params: 7B
+peak_vram: 18 GB
 cer_overall: 0.183
 cer_by_category: survey_notes 0.21 | kade_letters 0.24 | dominy_accounts 0.14 | treaties_microfilm 0.14
 external_data: Bentham line pairs; 120 self-transcribed survey-notebook lines (fine-tuning)   # "none" is fine
@@ -20,8 +20,8 @@ eval_wall_clock: 38 min                 # informational, not scored
 ```
 
 - `code_url` — your public repo at the exact tag or commit SHA that produced your reported numbers. Get it with `git tag v1.0-submission && git push origin v1.0-submission`; verify it loads in a private browser window. Include your predictions CSV in the repo.
-- `models` — every model in the pipeline, with checkpoint names. Each must be open-weight and under 70B parameters ([RULES.md](RULES.md)).
-- `largest_model_params` — parameter count of the largest model anywhere in the pipeline.
+- `models` — every model in the pipeline, with checkpoint names. Each must be open-weight ([RULES.md](RULES.md)).
+- `peak_vram` — peak GPU memory during your evaluation run. Must be within the single-GPU 96 GB budget ([RULES.md](RULES.md)); quantization is allowed, so report what the run actually used.
 - `cer_overall` and `cer_by_category` — exactly as printed by your own `evaluation/score_local.py` run against the released evaluation set. Lower is better. There's no leaderboard and nothing to upload — you measure yourself — but the numbers must be reproducible from your posted code; writeups in contention for recognition are re-run.
 - `external_data` — using external data is optional; this field is a disclosure, not a score. If you trained, fine-tuned, or tuned on anything beyond the provided calibration set — public datasets, self-transcribed samples — list it here; otherwise write `none`. (Training on the evaluation pages themselves is against the rules.)
 - `hardware` — **informational only, not scored.** It helps others judge deployability; there is no hardware requirement or advantage.
