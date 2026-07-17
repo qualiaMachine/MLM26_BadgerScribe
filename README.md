@@ -6,11 +6,13 @@ Faithfully transcribe handwritten and scanned archival documents into machine-re
 
 ## Overview
 
-Institutional archives contain vast collections of documents that remain difficult to access at scale: handwritten manuscripts, scanned reports, typed historical records, forms, and mixed-format pages. Modern vision-language models and OCR systems have improved significantly, but faithful transcription of archival documents remains challenging across a wide range of conditions — handwriting variability, degraded scans, complex layouts, and multi-format documents.
+Build a pipeline that turns scanned archival documents — most of them handwritten — into faithful machine-readable text, and document it well enough that a library could run it without you.
 
-This challenge focuses on one core problem: **faithful transcription of archival document images into machine-readable text**. The UW Libraries' digital collections provide the motivating use case and the evaluation data — nineteenth-century surveyors' field notes, German immigrant correspondence, craftsmen's account books, and treaty-era government documents. The goal is not reasoning, retrieval, or question answering. Participants are evaluated purely on how accurately they convert document images into text.
+The evaluation material comes from the UW–Madison Libraries: nineteenth-century surveyors' field notebooks, German immigrant letters in Kurrent script, craftsmen's account books, and treaty-era government documents on microfilm. All of it is digitized; almost none of it is transcribed. Untranscribed pages can't be searched, can't be read by screen readers, and can't be studied at scale, and transcribing them by hand takes staff time the Libraries don't have. The same backlog exists in archives everywhere; these collections are the test case.
 
-This is an **educational, collaborative challenge**. There are no cash prizes and no reason to hoard ideas. The point is to surface and share transcription pipelines that libraries and archives can actually deploy — share repos early, post findings to the Discussion tab, and build on each other's approaches. Deployability is a constraint, not an afterthought: submitted pipelines must run on a single 96 GB GPU with open-weight models (see [Description](#description)), because the target operator is an archives department with modest hardware and scarce staff time, not a datacenter. Every improvement one team publishes moves real archival collections closer to being readable, searchable, and accessible.
+Two constraints define the task. Transcription must be **faithful**: verbatim text in reading order, original spelling and punctuation preserved, no summarizing, no cleanup — accuracy is measured as character error rate against ground truth. And the pipeline must be **runnable by a library**: open-weight models only, executing end-to-end on a single GPU with at most 96 GB of VRAM, the class of machine the Libraries operate. A solution that routes pages through a frontier API produces text, but it doesn't solve the problem.
+
+There are no prizes and no leaderboard. Submissions are public writeups, sharing methods mid-challenge is encouraged, and the best outcome is a documented pipeline that the UW Digital Collections Center puts into production.
 
 ---
 
@@ -42,7 +44,7 @@ Outputs must be:
 
 This is strictly a transcription task — no question answering, no reasoning over content, no summarization.
 
-**Hardware constraint: your submitted pipeline must run end-to-end on a single GPU with at most 96 GB of VRAM, using open-weight models only.** The number matches the RTX Pro 6000 machines available on campus, and keeping solutions deployable on one such box is the whole point for institutional adoption — a benchmark won by a 400B frontier model spread across a datacenter doesn't help a library actually deploy anything. The budget covers the pipeline as it executes: sequential model loading is fine, and quantization is allowed and encouraged. Closed-weight API models (GPT, Claude, Gemini) are out of scope for the submitted run; see [RULES.md](RULES.md).
+**Hardware constraint: your submitted pipeline must run end-to-end on a single GPU with at most 96 GB of VRAM, using open-weight models only.** The number matches the RTX Pro 6000 machines available on campus. The budget covers the pipeline as it executes: sequential model loading is fine, and quantization is allowed and encouraged. Closed-weight API models (GPT, Claude, Gemini) are out of scope for the submitted run; see [RULES.md](RULES.md).
 
 ### Hard cases
 
