@@ -166,11 +166,9 @@ There are no cash or material awards — this is a non-monetary educational chal
 
 ## Organizers
 
-BadgerScribe was designed collectively by its organizers:
-
-- **Chris Endemann** (endemann@wisc.edu), Research Cyberinfrastructure / DoIT, UW–Madison — challenge lead; evaluation and coordination
-- **Scott Prater**, UW Digital Collections Center, UW–Madison Libraries — domain lead; collections, ground truth, and what "correct" means
-- **Kevin Chovanec**, Division of Extension, UW–Madison — datasets, baselines, and starter notebooks
+- **Chris Endemann** (endemann@wisc.edu), Research Cyberinfrastructure / DoIT, UW–Madison 
+- **Scott Prater**, UW Digital Collections Center, UW–Madison Libraries 
+- **Kevin Chovanec**, Division of Extension, UW–Madison
 
 Hosted by [ML+X](https://hub.datascience.wisc.edu/communities/mlx/) at the University of Wisconsin–Madison. Sponsor info: https://hub.datascience.wisc.edu/communities/mlx/sponsorship/
 
