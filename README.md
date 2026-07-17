@@ -75,7 +75,7 @@ The evaluation set is built **entirely from UW Digital Collections materials** w
 
 Public OCR/HTR benchmarks are well represented in VLM training data; a set of real institutional documents that has never circulated with transcriptions is what tells you whether a system actually generalizes. See [DATA.md](DATA.md) for the exact data format and [`docs/collections.md`](docs/collections.md) for collection details.
 
-**A labelled calibration set ships alongside the evaluation set.** It's a second sample of ground-truth-transcribed UW pages from the same collections, and unlike the evaluation pages it's yours to use however you want: fine-tune on it, tune prompts against it, or just use it to compare candidate models and pipeline designs before committing to one. That last use is the intended one — the set is deliberately small, sized for finding out what transcribes this material faithfully rather than for training from scratch. When you need volume, [RESOURCES.md](RESOURCES.md) maps public auxiliary datasets (Bentham, BLN600, NARA record groups, IAM, the Alfred Escher German correspondence, and more) to the UW collections, and the public UWDC browsers let you curate more pages yourself. The evaluation pages stay measuring-only: tune *toward* them, never *on* them (see [RULES.md](RULES.md)).
+**All of the UW ground truth is in the evaluation set — training data comes from elsewhere.** [RESOURCES.md](RESOURCES.md) maps labelled auxiliary datasets (Bentham, BLN600, NARA record groups, IAM, the Alfred Escher German correspondence, and more) to the UW collections; fine-tuning and calibrating on those, then measuring against the evaluation set, is the expected loop. The public UWDC browsers are also open if you want to transcribe additional UW pages yourself. The evaluation pages themselves are measuring-only: tune *toward* them, never *on* them (see [RULES.md](RULES.md)).
 
 ---
 
@@ -121,7 +121,7 @@ Macro-averaging across categories means a system has to perform across the board
 python evaluation/score_local.py --solution data/eval/solution.csv --submission my_predictions.csv
 ```
 
-The macro CER it prints, plus the per-category breakdown, are what you report in your writeup — a documented pipeline with a measured CER is the deliverable. **One rule keeps the numbers meaningful: the evaluation pages are for measuring, not training.** Don't fine-tune on them or hand-tune prompts against individual pages' ground truth; build on the calibration set and auxiliary data ([RESOURCES.md](RESOURCES.md)) and measure honestly.
+The macro CER it prints, plus the per-category breakdown, are what you report in your writeup — a documented pipeline with a measured CER is the deliverable. **One rule keeps the numbers meaningful: the evaluation pages are for measuring, not training.** Don't fine-tune on them or hand-tune prompts against individual pages' ground truth; build on auxiliary data ([RESOURCES.md](RESOURCES.md)) and measure honestly.
 
 ### Verification
 
