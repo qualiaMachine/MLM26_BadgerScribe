@@ -46,7 +46,7 @@ Outputs must be:
 
 This is strictly a transcription task — no question answering, no reasoning over content, no summarization.
 
-**Hardware constraint: your submitted pipeline must run end-to-end on a single GPU with at most 96 GB of VRAM, using open-weight models only.** The number matches the RTX Pro 6000 machines available on campus. The budget covers the pipeline as it executes: sequential model loading is fine, and quantization is allowed and encouraged. Closed-weight API models (GPT, Claude, Gemini) are out of scope for the submitted run; see [RULES.md](RULES.md).
+**Hardware constraint: your submitted pipeline must run end-to-end on a single GPU with at most 96 GB of VRAM, using open-weight models only.** The budget covers the pipeline as it executes: sequential model loading is fine, and quantization is allowed and encouraged. Closed-weight API models (GPT, Claude, Gemini) are out of scope for the submitted run; see [RULES.md](RULES.md).
 
 ### Hard cases
 
