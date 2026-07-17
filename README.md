@@ -13,7 +13,7 @@ This challenge focuses on **faithful transcription of archival document images i
 - Transcription must be faithful: verbatim text in reading order, original spelling and punctuation preserved, no summarizing, no cleanup — accuracy is measured as character error rate against ground truth.
 - The pipeline must be relatively lightweight and open source: open-weight models only, executing end-to-end on a single GPU with at most 96 GB of VRAM.
 
-This is an **educational, collaborative challenge**. There are no cash prizes and no reason to hoard ideas. The point is to surface and share transcription pipelines that libraries and archives can actually deploy — share repos early, post findings to the Discussion tab, and build on each other's approaches. Deployability is a constraint, not an afterthought: submitted pipelines must run on a single 96 GB GPU with open-weight models (see [Description](#description)), because the target operator is an archives department with modest hardware and scarce staff time, not a datacenter. Every improvement one team publishes moves real archival collections closer to being readable, searchable, and accessible.
+This is an **educational, collaborative challenge**. There are no cash prizes and no reason to hoard ideas. The point is to surface and share transcription pipelines that libraries and archives can actually deploy — share repos early, post findings to the Discussion tab, and build on each other's approaches. Every improvement one team publishes moves real archival collections closer to being readable, searchable, and accessible.
 
 ---
 
