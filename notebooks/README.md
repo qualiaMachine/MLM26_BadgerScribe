@@ -8,10 +8,10 @@ Three notebooks, one per solution family, each running the full path from page i
 | [`02_open_source_tools.ipynb`](02_open_source_tools.ipynb) | [Kraken](https://kraken.re/) segmentation + [PyLaia](https://gitlab.teklia.com/atr/pylaia) recognition | Production-grade historical-document tooling, very fine-tunable; more setup |
 | [`03_vlm_transcription.ipynb`](03_vlm_transcription.ipynb) | Small open-weight VLM (Qwen2.5-VL-7B) prompted per page | Shortest path to a full submission; normalizes/hallucinates by default, weakest on Kurrent |
 
-The families compose: chaining models is allowed as long as every model is open-weight and under 70B parameters (see [RULES.md](../RULES.md)) — e.g., Kraken segmentation feeding a VLM per region, or VLM fallback for low-confidence PyLaia lines.
+The families compose: chaining models is allowed as long as every model is open-weight and the whole pipeline runs within the single-GPU 96 GB VRAM budget (see [RULES.md](../RULES.md)) — e.g., Kraken segmentation feeding a VLM per region, or VLM fallback for low-confidence PyLaia lines.
 
 > **Status: skeletons.** The pipeline structure, scoring hookup, and submission-file cells are in place; model-dependent cells are stubs marked `TODO(kevin)` and will be filled in (with baseline CERs per category) before launch.
 
 ## Fine-tuning
 
-All three families benefit from fine-tuning on curated in-domain samples — even ~100 transcribed pages of the survey notebooks' drawn tables might yield significant gains on that category. The UW collections are publicly browsable for building your own training pairs (the evaluation pages are for measuring, not training); see [RESOURCES.md](../RESOURCES.md).
+All three families benefit from tuning on in-domain samples — start with the released calibration set ([DATA.md](../DATA.md)), and even ~100 transcribed pages of the survey notebooks' drawn tables might yield significant gains on that category. The UW collections are publicly browsable for building your own training pairs (the evaluation pages are for measuring, not training); see [RESOURCES.md](../RESOURCES.md).

@@ -1,6 +1,6 @@
 # Resources
 
-No training set ships with this challenge — assembling calibration and training data that resembles the test material is part of the work. This page lists public datasets matched to the UW collections, the collections' own public browsers, and the main open-source tooling families.
+The challenge ships a small labelled calibration set of UW pages ([DATA.md](DATA.md)) — enough to work out which models and pipeline designs transcribe this material faithfully, not enough to train on at scale. This page is for when you need more: public datasets matched to the UW collections, the collections' own public browsers for curating additional pages, and the main open-source tooling families.
 
 ## Suggested public datasets
 
@@ -41,7 +41,7 @@ The source collections are publicly browsable — transcribing a small sample yo
 ## Tooling
 
 - **Traditional / open-source HTR**: [Kraken](https://kraken.re/) (layout + line segmentation), [PyLaia](https://gitlab.teklia.com/atr/pylaia) (line recognition), [Tesseract](https://github.com/tesseract-ocr/tesseract) (print), [TrOCR](https://huggingface.co/docs/transformers/model_doc/trocr) (transformer line recognizer, fine-tunable).
-- **Open-weight VLMs** (all well under the 70B cap): Qwen2.5-VL (3B/7B/32B), InternVL, Pixtral-12B, Llama 3.2 Vision 11B — prompt for page-level transcription or fine-tune on curated lines.
+- **Open-weight VLMs** (all comfortably within the 96 GB VRAM budget): Qwen2.5-VL (3B/7B/32B), InternVL, Pixtral-12B, Llama 3.2 Vision 11B — prompt for page-level transcription or fine-tune on curated lines.
 - Starter notebooks for each family are in [`notebooks/`](notebooks/).
 
 ## Compute

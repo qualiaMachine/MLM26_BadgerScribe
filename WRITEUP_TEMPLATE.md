@@ -2,7 +2,7 @@
 
 This template is a suggested structure for those who want guidance, not a form to fill out. Organize yours however you like and fill it with whatever insights you learned. Explain your learning journey along the way — what you tried, what worked, what didn't, and where you ended up.
 
-The one part that is **not optional** is the submission card — the block below, filled in with your values, at the top of your Writeup. Your standing is computed from it and your result is verified against it. Everything after it is yours to shape.
+The one part that is **not optional** is the submission card — the block below, filled in with your values, at the top of your Writeup. It's what makes your work reproducible and your claims checkable. Everything after it is yours to shape.
 
 ---
 
@@ -11,19 +11,21 @@ The one part that is **not optional** is the submission card — the block below
 ```
 code_url: https://github.com/team/pipeline/tree/v1.0-submission
 models: Qwen/Qwen2.5-VL-7B-Instruct; kraken blla.mlmodel (segmentation)
-largest_model_params: 7B
+peak_vram: 18 GB
 cer_overall: 0.183
 cer_by_category: survey_notes 0.21 | kade_letters 0.24 | dominy_accounts 0.14 | treaties_microfilm 0.14
-external_data: Bentham line pairs (calibration); 120 self-transcribed survey-notebook lines (fine-tuning)
-hardware: RTX 4090 24 GB
+external_data: Bentham line pairs; 120 self-transcribed survey-notebook lines (fine-tuning)   # "none" is fine
+hardware: RTX 4090 24 GB                # informational, not scored
+eval_wall_clock: 38 min                 # informational, not scored
 ```
 
 - `code_url` — your public repo at the exact tag or commit SHA that produced your reported numbers. Get it with `git tag v1.0-submission && git push origin v1.0-submission`; verify it loads in a private browser window. Include your predictions CSV in the repo.
-- `models` — every model in the pipeline, with checkpoint names. Each must be open-weight and under 70B parameters ([RULES.md](RULES.md)).
-- `largest_model_params` — parameter count of the largest model anywhere in the pipeline.
-- `cer_overall` and `cer_by_category` — exactly as printed by `evaluation/score_local.py` against the released evaluation set. Lower is better; self-reported, spot-checked, and verified for the top 10.
-- `external_data` — every dataset you trained, fine-tuned, or calibrated on, including self-transcribed samples. (Training on the evaluation pages themselves is against the rules.)
-- `hardware` — informational, not scored; helps others judge deployability.
+- `models` — every model in the pipeline, with checkpoint names. Each must be open-weight ([RULES.md](RULES.md)).
+- `peak_vram` — peak GPU memory during your evaluation run. Must be within the single-GPU 96 GB budget ([RULES.md](RULES.md)); quantization is allowed, so report what the run actually used.
+- `cer_overall` and `cer_by_category` — exactly as printed by your own `evaluation/score_local.py` run against the released evaluation set. Lower is better. There's no leaderboard and nothing to upload — you measure yourself — but the numbers must be reproducible from your posted code; writeups in contention for recognition are re-run.
+- `external_data` — using external data is optional; this field is a disclosure, not a score. If you trained, fine-tuned, or tuned on anything beyond the provided calibration set — public datasets, self-transcribed samples — list it here; otherwise write `none`. (Training on the evaluation pages themselves is against the rules.)
+- `hardware` — **informational only, not scored.** It helps others judge deployability; there is no hardware requirement or advantage.
+- `eval_wall_clock` — **informational only, not scored.** Total wall-clock time for your pipeline to process the full released evaluation set end to end (images in, predictions CSV out) on the listed hardware. Together with `hardware`, this is the deployability signal the Libraries care about.
 
 Also add a **cover image** — Kaggle requires one to submit a Writeup; an evaluation page next to your transcription of it, or a pipeline diagram, both work.
 
