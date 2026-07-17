@@ -166,7 +166,9 @@ There are no cash or material awards — this is a non-monetary educational chal
 
 ## Organizers
 
-- **Chris Endemann** (endemann@wisc.edu), Research Cyberinfrastructure / DoIT, UW–Madison — challenge design, evaluation, coordination
+BadgerScribe was designed collectively by its organizers:
+
+- **Chris Endemann** (endemann@wisc.edu), Research Cyberinfrastructure / DoIT, UW–Madison — challenge lead; evaluation and coordination
 - **Scott Prater**, UW Digital Collections Center, UW–Madison Libraries — domain lead; collections, ground truth, and what "correct" means
 - **Kevin Chovanec**, Division of Extension, UW–Madison — datasets, baselines, and starter notebooks
 
