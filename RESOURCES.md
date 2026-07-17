@@ -1,6 +1,6 @@
 # Resources
 
-The challenge ships a small labelled calibration set of UW pages ([DATA.md](DATA.md)) — enough to work out which models and pipeline designs transcribe this material faithfully, not enough to train on at scale. This page is for when you need more: public datasets matched to the UW collections, the collections' own public browsers for curating additional pages, and the main open-source tooling families.
+The only labelled UW data in this challenge is the evaluation set, and that's for measuring, not training ([RULES.md](RULES.md)) — so the labelled data you tune on comes from here. This page lists public datasets matched to the UW collections, the collections' own public browsers for curating additional pages, and the main open-source tooling families.
 
 ## Suggested public datasets
 

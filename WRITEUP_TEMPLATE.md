@@ -23,7 +23,7 @@ eval_wall_clock: 38 min                 # informational, not scored
 - `models` — every model in the pipeline, with checkpoint names. Each must be open-weight ([RULES.md](RULES.md)).
 - `peak_vram` — peak GPU memory during your evaluation run. Must be within the single-GPU 96 GB budget ([RULES.md](RULES.md)); quantization is allowed, so report what the run actually used.
 - `cer_overall` and `cer_by_category` — exactly as printed by your own `evaluation/score_local.py` run against the released evaluation set. Lower is better. There's no leaderboard and nothing to upload — you measure yourself — but the numbers must be reproducible from your posted code; writeups in contention for recognition are re-run.
-- `external_data` — using external data is optional; this field is a disclosure, not a score. If you trained, fine-tuned, or tuned on anything beyond the provided calibration set — public datasets, self-transcribed samples — list it here; otherwise write `none`. (Training on the evaluation pages themselves is against the rules.)
+- `external_data` — using external data is optional; this field is a disclosure, not a score. If you trained, fine-tuned, or tuned on anything — public datasets, self-transcribed samples — list it here; otherwise write `none`. (Training on the evaluation pages themselves is against the rules.)
 - `hardware` — **informational only, not scored.** It helps others judge deployability; there is no hardware requirement or advantage.
 - `eval_wall_clock` — **informational only, not scored.** Total wall-clock time for your pipeline to process the full released evaluation set end to end (images in, predictions CSV out) on the listed hardware. Together with `hardware`, this is the deployability signal the Libraries care about.
 
