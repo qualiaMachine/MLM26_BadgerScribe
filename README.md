@@ -11,7 +11,8 @@ Institutional archives contain vast collections of documents that remain difficu
 This challenge focuses on **faithful transcription of archival document images into machine-readable text**. The UW Libraries' digital collections provide the motivating use case and the evaluation data — nineteenth-century surveyors' field notes, German immigrant correspondence, craftsmen's account books, and treaty-era government documents. Participants are evaluated on how accurately they convert document images into text under the following constraints:
 
 - Transcription must be faithful: verbatim text in reading order, original spelling and punctuation preserved, no summarizing, no cleanup — accuracy is measured as character error rate against ground truth.
-- The pipeline must be relatively lightweight and open source: open-weight models only, executing end-to-end on a single GPU with at most 96 GB of VRAM.
+- The pipeline must execute end-to-end on a single GPU with at most 96 GB of VRAM.
+- Every model must be open-weight: no closed-weight APIs (GPT, Claude, Gemini) anywhere in the submitted pipeline.
 
 This is an **educational, collaborative challenge**. There are no cash prizes and no reason to hoard ideas. The point is to surface and share transcription pipelines that libraries and archives can actually deploy — share repos early, post findings to the Discussion tab, and build on each other's approaches. Every improvement one team publishes moves real archival collections closer to being readable, searchable, and accessible.
 
@@ -45,7 +46,7 @@ Outputs must be:
 
 This is strictly a transcription task — no question answering, no reasoning over content, no summarization.
 
-**Hardware constraint: your submitted pipeline must run end-to-end on a single GPU with at most 96 GB of VRAM, using open-weight models only.** The number matches the RTX Pro 6000 machines available on campus, and keeping solutions deployable on one such box is the whole point for institutional adoption — a benchmark won by a 400B frontier model spread across a datacenter doesn't help a library actually deploy anything. The budget covers the pipeline as it executes: sequential model loading is fine, and quantization is allowed and encouraged. Closed-weight API models (GPT, Claude, Gemini) are out of scope for the submitted run; see [RULES.md](RULES.md).
+**Hardware constraint: your submitted pipeline must run end-to-end on a single GPU with at most 96 GB of VRAM, using open-weight models only.** The number matches the RTX Pro 6000 machines available on campus. The budget covers the pipeline as it executes: sequential model loading is fine, and quantization is allowed and encouraged. Closed-weight API models (GPT, Claude, Gemini) are out of scope for the submitted run; see [RULES.md](RULES.md).
 
 ### Hard cases
 
